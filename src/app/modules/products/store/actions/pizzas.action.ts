@@ -7,17 +7,20 @@ export const LOAD_PIZZAS_FAIL = '[Products] Load Pizzas Fail';
 
 export class LoadPizzas implements Action {
   readonly type = LOAD_PIZZAS;
+  payload = null;
 }
 
 export class LoadPizzasSuccess implements Action {
   readonly type = LOAD_PIZZAS_SUCCESS;
-  constructor(private payload: any) {
+
+  constructor(public payload: Pizza[]) {
   }
 }
 
 export class LoadPizzasFail implements Action {
   readonly type = LOAD_PIZZAS_FAIL;
-  constructor(private payload: Pizza[]) {
+
+  constructor(public payload: any) {
   }
 }
 
