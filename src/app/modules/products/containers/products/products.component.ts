@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 import {Pizza} from '../../models/pizza.model';
 import {Store} from '@ngrx/store';
-import {getAllPizzas, ProductsState} from '../../store/reducers';
+import {ProductsState} from '../../store/reducers';
 import {Observable} from 'rxjs';
 import {LoadPizzas} from '../../store/actions/pizzas.action';
+import {getAllPizzas} from '../../store/selectors';
 
 @Component({
   selector: 'products',

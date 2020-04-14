@@ -44,7 +44,6 @@ export function reducer(state = initialState, action: PizzasAction): PizzaState 
   return state;
 }
 
-
 export function getPizzasLoading(state: PizzaState) {
   return state.loading;
 }
