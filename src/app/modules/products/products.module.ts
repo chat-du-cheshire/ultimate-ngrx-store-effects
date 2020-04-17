@@ -13,6 +13,7 @@ import {StoreModule} from '@ngrx/store';
 import {reducers} from './store/reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {PizzasEffects} from './store/effects/pizzas.effect';
+import {ToppingsEffects} from './store/effects/toppings.effects';
 
 // routes
 export const ROUTES: Routes = [
@@ -37,7 +38,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forChild(ROUTES),
     StoreModule.forFeature('products', reducers),
-    EffectsModule.forFeature([PizzasEffects])
+    EffectsModule.forFeature([PizzasEffects, ToppingsEffects])
   ],
   providers: [...fromServices.services],
   declarations: [...fromContainers.containers, ...fromComponents.components],
