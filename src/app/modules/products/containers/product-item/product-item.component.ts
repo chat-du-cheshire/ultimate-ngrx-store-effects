@@ -7,6 +7,7 @@ import {Store} from '@ngrx/store';
 import {ProductsState} from '../../store/reducers';
 import {Observable} from 'rxjs';
 import {getSelectedPizza} from '../../store/selectors';
+import {LoadToppings} from '../../store/actions/toppings.action';
 
 @Component({
   selector: 'product-item',
@@ -38,6 +39,7 @@ export class ProductItemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(new LoadToppings());
   }
 
   onSelect(event: number[]) {
