@@ -7,7 +7,11 @@ import {
   CreatePizzaSuccess,
   LOAD_PIZZAS,
   LoadPizzasFail,
-  LoadPizzasSuccess
+  LoadPizzasSuccess,
+  UPDATE_PIZZA,
+  UpdatePizza,
+  UpdatePizzaFail,
+  UpdatePizzaSuccess
 } from '../actions/pizzas.action';
 import {catchError, map, pluck, switchMap} from 'rxjs/operators';
 import {PizzasService} from '../../services';
@@ -34,6 +38,17 @@ export class PizzasEffects {
       .pipe(
         map((pizza) => new CreatePizzaSuccess(pizza)),
         catchError((error) => of(new CreatePizzaFail(error)))
+      )
+    )
+  );
+
+  @Effect() updatePizza$ = this.actions$.pipe(
+    ofType(UPDATE_PIZZA),
+    pluck<UpdatePizza, 'payload'>('payload'),
+    switchMap((pizza: Pizza) => this.pizzasService.updatePizza(pizza)
+      .pipe(
+        map((pizza) => new UpdatePizzaSuccess(pizza)),
+        catchError((error) => of(new UpdatePizzaFail(error)))
       )
     )
   );

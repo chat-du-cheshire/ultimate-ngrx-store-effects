@@ -10,7 +10,7 @@ import {getPizzaVisualized, getSelectedPizza} from '../../store/selectors';
 import {VisualizeToppings} from '../../store/actions/toppings.action';
 import {getAllTppings} from '../../store/selectors/toppings.selectors';
 import {tap} from 'rxjs/operators';
-import {CreatePizza} from '../../store/actions/pizzas.action';
+import {CreatePizza, UpdatePizza} from '../../store/actions/pizzas.action';
 
 @Component({
   selector: 'product-item',
@@ -61,6 +61,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   onUpdate(event: Pizza) {
+    this.store.dispatch(new UpdatePizza(event));
   }
 
   onRemove(event: Pizza) {

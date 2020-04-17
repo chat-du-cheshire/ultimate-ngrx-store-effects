@@ -6,7 +6,10 @@ import {
   LOAD_PIZZAS,
   LOAD_PIZZAS_FAIL,
   LOAD_PIZZAS_SUCCESS,
-  PizzasAction
+  PizzasAction,
+  UPDATE_PIZZA,
+  UPDATE_PIZZA_FAIL,
+  UPDATE_PIZZA_SUCCESS
 } from '../actions/pizzas.action';
 
 export interface PizzaState {
@@ -23,6 +26,7 @@ export const initialState: PizzaState = {
 
 export function reducer(state = initialState, action: PizzasAction): PizzaState {
   switch (action.type) {
+    case UPDATE_PIZZA:
     case CREATE_PIZZA:
     case LOAD_PIZZAS: {
       return {
@@ -42,6 +46,7 @@ export function reducer(state = initialState, action: PizzasAction): PizzaState 
         entities
       };
     }
+    case UPDATE_PIZZA_SUCCESS:
     case CREATE_PIZZA_SUCCESS: {
       const entities = {
         ...state.entities,
@@ -55,6 +60,7 @@ export function reducer(state = initialState, action: PizzasAction): PizzaState 
         entities
       };
     }
+    case UPDATE_PIZZA_FAIL:
     case CREATE_PIZZA_FAIL:
     case LOAD_PIZZAS_FAIL: {
       return {

@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm-run-all --parallel serve:proxy mock:server",
+    "start": "npm-run-all --parallel serve mock:server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "serve:proxy": "ng serve --proxy-config proxy.conf.json",
+    "serve": "ng serve",
     "mock:server": "json-server --watch db.json"
   },
   "private": true,

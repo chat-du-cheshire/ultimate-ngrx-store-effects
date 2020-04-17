@@ -51,7 +51,7 @@
   ],
   "pizzas": [
     {
-      "name": "Blazin' Inferno",
+      "name": "Blazin' Inferno Ora",
       "toppings": [
         {
           "id": 10,
@@ -160,8 +160,63 @@
           "name": "pepper"
         }
       ],
-      "*Id": "api",
       "id": 4
+    },
+    {
+      "name": "Va Va Boom Pizza",
+      "toppings": [
+        {
+          "id": 1,
+          "name": "anchovy"
+        },
+        {
+          "id": 2,
+          "name": "bacon"
+        },
+        {
+          "id": 3,
+          "name": "basil"
+        },
+        {
+          "id": 4,
+          "name": "chili"
+        },
+        {
+          "id": 12,
+          "name": "tomato"
+        },
+        {
+          "id": 11,
+          "name": "sweetcorn"
+        },
+        {
+          "id": 10,
+          "name": "pepperoni"
+        },
+        {
+          "id": 9,
+          "name": "pepper"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "name": "Ora",
+      "toppings": [
+        {
+          "id": 7,
+          "name": "olive"
+        },
+        {
+          "id": 10,
+          "name": "pepperoni"
+        },
+        {
+          "id": 5,
+          "name": "mozzarella"
+        }
+      ],
+      "id": 6
     }
   ]
 }
