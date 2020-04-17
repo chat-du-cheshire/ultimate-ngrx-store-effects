@@ -1,9 +1,18 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {LOAD_PIZZAS, LoadPizzasFail, LoadPizzasSuccess} from '../actions/pizzas.action';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import {
+  CREATE_PIZZA,
+  CreatePizza,
+  CreatePizzaFail,
+  CreatePizzaSuccess,
+  LOAD_PIZZAS,
+  LoadPizzasFail,
+  LoadPizzasSuccess
+} from '../actions/pizzas.action';
+import {catchError, map, pluck, switchMap} from 'rxjs/operators';
 import {PizzasService} from '../../services';
 import {of} from 'rxjs';
+import {Pizza} from '../../models/pizza.model';
 
 @Injectable()
 export class PizzasEffects {
@@ -14,6 +23,17 @@ export class PizzasEffects {
       .pipe(
         map((pizzas) => new LoadPizzasSuccess(pizzas)),
         catchError((error) => of(new LoadPizzasFail(error)))
+      )
+    )
+  );
+
+  @Effect() createPizza$ = this.actions$.pipe(
+    ofType(CREATE_PIZZA),
+    pluck<CreatePizza, 'payload'>('payload'),
+    switchMap((pizza: Pizza) => this.pizzasService.createPizza(pizza)
+      .pipe(
+        map((pizza) => new CreatePizzaSuccess(pizza)),
+        catchError((error) => of(new CreatePizzaFail(error)))
       )
     )
   );
