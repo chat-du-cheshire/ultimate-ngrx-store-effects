@@ -8,6 +8,7 @@ import {ProductsState} from '../../store/reducers';
 import {Observable} from 'rxjs';
 import {getSelectedPizza} from '../../store/selectors';
 import {LoadToppings} from '../../store/actions/toppings.action';
+import {getAllTppings} from '../../store/selectors/toppings.selectors';
 
 @Component({
   selector: 'product-item',
@@ -17,7 +18,7 @@ import {LoadToppings} from '../../store/actions/toppings.action';
       class="product-item">
       <pizza-form
         [pizza]="pizza$ | async"
-        [toppings]="toppings"
+        [toppings]="toppings$ | async"
         (selected)="onSelect($event)"
         (create)="onCreate($event)"
         (update)="onUpdate($event)"
@@ -32,7 +33,7 @@ import {LoadToppings} from '../../store/actions/toppings.action';
 export class ProductItemComponent implements OnInit {
   pizza$: Observable<Pizza> = this.store.select(getSelectedPizza);
   visualise: Pizza;
-  toppings: Topping[];
+  toppings$: Observable<Topping[]> = this.store.select(getAllTppings);
 
   constructor(
     private store: Store<ProductsState>
