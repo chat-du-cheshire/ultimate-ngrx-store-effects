@@ -1,6 +1,7 @@
 import {createSelector} from '@ngrx/store';
 import {getProductsState, ProductsState} from '../reducers';
 import {
+  getSelectedToppings as getToppings,
   getToppingsEntities as getEntities,
   getToppingsLoaded as getLoaded,
   getToppingsLoading as getLoading
@@ -18,3 +19,5 @@ export const getAllTppings = createSelector(getToppingsEntities, (entities) => O
 export const getToppingsLoaded = createSelector(getToppingsState, getLoaded);
 
 export const getToppingsLoading = createSelector(getToppingsState, getLoading);
+
+export const getSelectedToppings = createSelector(getToppingsState, getToppings);

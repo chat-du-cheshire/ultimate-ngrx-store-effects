@@ -3,6 +3,7 @@ import {getPizzasEntities, getPizzasLoaded, getPizzasLoading} from '../reducers/
 import {getProductsState, ProductsState} from '../reducers';
 import {getRouterState} from '../../../../store/reducers';
 import {Pizza} from '../../models/pizza.model';
+import {getSelectedToppings, getToppingsEntities} from './toppings.selectors';
 
 export const getPizzaState = createSelector(getProductsState, (state: ProductsState) => state.pizzas);
 
@@ -17,3 +18,15 @@ export const getSelectedPizza = createSelector(
 export const getAllPizzas = createSelector(getAllPizzasEntities, (entities) => Object.values(entities));
 export const getAllPizzasLoading = createSelector(getPizzaState, getPizzasLoading);
 export const getAllPizzasLoaded = createSelector(getPizzaState, getPizzasLoaded);
+
+export const getPizzaVisualized = createSelector(
+  getSelectedPizza,
+  getToppingsEntities,
+  getSelectedToppings,
+  (pizza, toppingsEntities, selectedToppings) => {
+    const toppings = selectedToppings.map((id) => toppingsEntities[id]);
+    return {
+      ...pizza, toppings
+    };
+  }
+);
