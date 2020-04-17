@@ -5,6 +5,10 @@ import {
   CreatePizza,
   CreatePizzaFail,
   CreatePizzaSuccess,
+  DELETE_PIZZA,
+  DeletePizza,
+  DeletePizzaFail,
+  DeletePizzaSuccess,
   LOAD_PIZZAS,
   LoadPizzasFail,
   LoadPizzasSuccess,
@@ -49,6 +53,17 @@ export class PizzasEffects {
       .pipe(
         map((pizza) => new UpdatePizzaSuccess(pizza)),
         catchError((error) => of(new UpdatePizzaFail(error)))
+      )
+    )
+  );
+
+  @Effect() deletePizza$ = this.actions$.pipe(
+    ofType(DELETE_PIZZA),
+    pluck<DeletePizza, 'payload'>('payload'),
+    switchMap((pizza: Pizza) => this.pizzasService.removePizza(pizza)
+      .pipe(
+        map(() => new DeletePizzaSuccess(pizza)),
+        catchError((error) => of(new DeletePizzaFail(error)))
       )
     )
   );

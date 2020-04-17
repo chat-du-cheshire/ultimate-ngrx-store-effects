@@ -10,7 +10,7 @@ import {getPizzaVisualized, getSelectedPizza} from '../../store/selectors';
 import {VisualizeToppings} from '../../store/actions/toppings.action';
 import {getAllTppings} from '../../store/selectors/toppings.selectors';
 import {tap} from 'rxjs/operators';
-import {CreatePizza, UpdatePizza} from '../../store/actions/pizzas.action';
+import {CreatePizza, DeletePizza, UpdatePizza} from '../../store/actions/pizzas.action';
 
 @Component({
   selector: 'product-item',
@@ -67,6 +67,7 @@ export class ProductItemComponent implements OnInit {
   onRemove(event: Pizza) {
     const remove = window.confirm('Are you sure?');
     if (remove) {
+      this.store.dispatch(new DeletePizza(event));
     }
   }
 }

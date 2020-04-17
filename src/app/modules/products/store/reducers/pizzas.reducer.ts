@@ -3,6 +3,9 @@ import {
   CREATE_PIZZA,
   CREATE_PIZZA_FAIL,
   CREATE_PIZZA_SUCCESS,
+  DELETE_PIZZA,
+  DELETE_PIZZA_FAIL,
+  DELETE_PIZZA_SUCCESS,
   LOAD_PIZZAS,
   LOAD_PIZZAS_FAIL,
   LOAD_PIZZAS_SUCCESS,
@@ -26,6 +29,7 @@ export const initialState: PizzaState = {
 
 export function reducer(state = initialState, action: PizzasAction): PizzaState {
   switch (action.type) {
+    case DELETE_PIZZA:
     case UPDATE_PIZZA:
     case CREATE_PIZZA:
     case LOAD_PIZZAS: {
@@ -37,7 +41,7 @@ export function reducer(state = initialState, action: PizzasAction): PizzaState 
     case LOAD_PIZZAS_SUCCESS: {
       const entities = action.payload.reduce(
         (acc: { [id: number]: Pizza }, pizza) => ({...acc, [pizza.id]: pizza}),
-        {...state.entities}
+        {}
       );
       return {
         ...state,
@@ -60,6 +64,18 @@ export function reducer(state = initialState, action: PizzasAction): PizzaState 
         entities
       };
     }
+    case DELETE_PIZZA_SUCCESS: {
+      const {[action.payload.id]: removed, ...entities} = state.entities;
+
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        entities
+      };
+    }
+
+    case DELETE_PIZZA_FAIL:
     case UPDATE_PIZZA_FAIL:
     case CREATE_PIZZA_FAIL:
     case LOAD_PIZZAS_FAIL: {
